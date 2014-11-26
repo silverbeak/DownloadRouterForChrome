@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+
+  "name": "Download Router",
+  "description": "Allows you to route your downloads to custom target folders.",
+  "version": "1.0",
+  "background": {
+    "scripts": [ "js/dbHelper.js", "downloadEvent.js" ],
+    "persistent": false
+  },
+
+  "options_page": "options.html",
+
+  "content_scripts": [{
+    "js": [ "js/bootstrap.min.js", "js/jquery-2.1.1.min.js", "js/dbHelper.js", "js/options.js"],
+    "matches": ["http://*/*", "https://*/*"]
+  }],
+
+  "permissions": [
+    "downloads",
+    "storage",
+    "https://maxcdn.bootstrapcdn.com/",
+    "https://code.jquery.com/"
+  ],
+  "browser_action": {
+    "default_icon": "arrow-down-b.png"
+  }
+}
