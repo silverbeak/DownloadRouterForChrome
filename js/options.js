@@ -17,15 +17,14 @@ $(function() {
 		var urlMatch = $("#urltext").val();
 		var filenameMatch = $("#filenametext").val();
 
-		// alert("Saving " + routeName + ", " + urlMatch + ", " + filenameMatch);
 		saveRoute(routeName, urlMatch, filenameMatch, onSaveFunction);
+		$("#newroute").hide();
 	});
 });
 
 function updateRouteList(routeList) {
 	$('#routelist').html('');
 	var routeNames = Object.keys(routeList);
-	console.log('Routekeys: ', routeNames);
 	var newElement = '<table class="table"><tbody>';
 	for (var route in routeNames) {
 		var routeName = routeNames[route];
@@ -45,23 +44,15 @@ function updateRouteList(routeList) {
 	newElement += '</tbody></table>';
 	$('#routelist').append(newElement);
 
-
-	for (var route in routeNames) {
-		$('#' + route).click(function(event) {
-			console.log('Will delete! ', event);
-			readRoutesFromDb(function(routes) {
-				var routeKeys = Object.keys(routes);
-				delete routes[routeKeys[route]];
-				saveAllRoutes(routes);
-
-				// TODO: Possible race condition here. Implement with callback functionality instead.
-				readRoutesFromDb(updateRouteList);
-			});
+	$.each(routeNames, function(index, value) {
+		$('#' + index).click(function(event) {
+			deleteRoute(value);
 		});
-	}
+	});
 }
 
 function readRoutesFromDbDefault() {
+	addDbUpdateCallback(updateRouteList);
 	readRoutesFromDb(updateRouteList);
 }
 
