@@ -40,7 +40,6 @@ function updateRouteList(routeList) {
 		newElement += '<tr><td>URL matches</td><td>';
 		newElement += routeList[routeName].urlMatch;
 		newElement += '</td></tr>';
-		
 	}
 	newElement += '</tbody></table>';
 	$('#routelist').append(newElement);
