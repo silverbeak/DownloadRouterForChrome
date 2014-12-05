@@ -1,6 +1,5 @@
-var onSaveFunction = function() {
-    // Update status to let user know options were saved.
-    $('#status').html('Saved ');
+var onSaveFunction = function(routeName) {
+    $.growl({ title: "Saved!", message: "Route " + routeName + " saved!" });
     readRoutesFromDb(updateRouteList);
 };
 
@@ -17,7 +16,9 @@ $(function() {
 		var urlMatch = $("#urltext").val();
 		var filenameMatch = $("#filenametext").val();
 
-		saveRoute(routeName, urlMatch, filenameMatch, onSaveFunction);
+		if (typeof routeName !== 'undefined' && routeName !== '') {
+			saveRoute(routeName, urlMatch, filenameMatch, onSaveFunction);
+		}
 		$("#newroute").hide();
 	});
 });
@@ -47,6 +48,7 @@ function updateRouteList(routeList) {
 	$.each(routeNames, function(index, value) {
 		$('#' + index).click(function(event) {
 			deleteRoute(value);
+			$.growl({ title: "Deleted!", message: "Route " + value + " deleted!" });
 		});
 	});
 }

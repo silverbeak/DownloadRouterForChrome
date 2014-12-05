@@ -33,7 +33,7 @@ function saveRoute(routeName, urlMatch, fileNameMatch, onSave) {
 
 	readRoutesFromDb(function(routes) {
 		routes[routeName] = newRoute;
-		chrome.storage.local.set({'routes': routes}, onSave);
+		chrome.storage.local.set({'routes': routes}, onSave(routeName));
 	});
 }
 

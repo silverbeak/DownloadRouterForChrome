@@ -12,7 +12,13 @@
   "options_page": "options.html",
 
   "content_scripts": [{
-    "js": [ "js/bootstrap.min.js", "js/jquery-2.1.1.min.js", "js/dbHelper.js", "js/options.js"],
+    "js": [
+      "js/bootstrap.min.js",
+      "js/jquery-2.1.1.min.js",
+      "js/dbHelper.js",
+      "js/options.js",
+      "js/growl/javascript/jquery.growl.js"
+    ],
     "matches": ["http://*/*", "https://*/*"]
   }],
 
