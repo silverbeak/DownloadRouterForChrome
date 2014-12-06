@@ -5,7 +5,7 @@
   "description": "Allows you to route your downloads to custom target folders.",
   "version": "1.0",
   "background": {
-    "scripts": [ "js/dbHelper.js", "downloadEvent.js" ],
+    "scripts": [ "js/jquery-2.1.1.min.js", "js/dbHelper.js", "downloadEvent.js" ],
     "persistent": false
   },
   "icons": {

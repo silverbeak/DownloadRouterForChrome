@@ -1,6 +1,19 @@
+var mySettings = {};
+
 var onSaveFunction = function(routeName) {
     $.growl({ title: "Saved!", message: "Route " + routeName + " saved!" });
     readRoutesFromDb(updateRouteList);
+};
+
+var refreshSettingsOnPage = function() {
+	$("#shownotificationcheckbox").prop('checked', mySettings.showNotificationOnDownload);
+};
+
+var settingsUpdatedFunc = function(newValue) {
+	$.each(Object.keys(newValue), function() {
+		mySettings[this] = newValue[this];
+	});
+	refreshSettingsOnPage();
 };
 
 $(function() {
@@ -25,6 +38,14 @@ $(function() {
 		$("#filenametext").val("");
 		$("#newroute").hide();
 	});
+
+	$("#shownotificationcheckbox").click(function() {
+		mySettings.showNotificationOnDownload = this.checked;
+		saveSettings(mySettings, function() { console.log('Saved settings'); });
+	});
+
+	addSettingsUpdateCallback(settingsUpdatedFunc);
+	readSettings(settingsUpdatedFunc);
 });
 
 function updateRouteList(routeList) {

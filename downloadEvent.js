@@ -1,5 +1,6 @@
 var myRoutes;
 var myDownloads = {};
+var mySettings;
 
 var onRoutesRead = function(routes) {
   myRoutes = routes;
@@ -32,7 +33,7 @@ var downloadCallback = function(downloadItem, suggest) {
 };
 
 var changeCallback = function(downloadDelta) {
-  if (downloadDelta.state && downloadDelta.state.current === 'complete') {
+  if (mySettings.showNotificationOnDownload && downloadDelta.state && downloadDelta.state.current === 'complete') {
     var thisDownload = myDownloads[downloadDelta.id];
     if (thisDownload) {
       var opt = {
@@ -47,6 +48,10 @@ var changeCallback = function(downloadDelta) {
   }
 };
 
+var updateSettingsCallback = function(settings) { mySettings = settings; };
+
+addSettingsUpdateCallback(updateSettingsCallback);
 readRoutesFromDb(onRoutesRead);
+readSettings(updateSettingsCallback);
 chrome.downloads.onDeterminingFilename.addListener(downloadCallback);
 chrome.downloads.onChanged.addListener(changeCallback);
