@@ -32,7 +32,8 @@ function readRoutesFromDb(callback) {
 		'routes': {
 			'Any Domain': {
 				'urlMatch': "^.*\\:[\\/]*[w\\.]*([\\w\\.]*)\\/",
-				'filenameMatch': ""
+				'filenameMatch': "",
+				'enabled': true
 			}
 		}
 	}, function(items) {
@@ -57,6 +58,13 @@ function saveRoute(routeName, urlMatch, fileNameMatch, onSave) {
 	readRoutesFromDb(function(routes) {
 		routes[routeName] = newRoute;
 		chrome.storage.local.set({'routes': routes}, onSave(routeName));
+	});
+}
+
+function setRouteEnabled(routeName, value) {
+	readRoutesFromDb(function(routes) {
+		routes[routeName].enabled = value;
+		saveAllRoutes(routes);
 	});
 }
 

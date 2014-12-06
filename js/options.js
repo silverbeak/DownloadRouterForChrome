@@ -56,7 +56,7 @@ function updateRouteList(routeList) {
 		var routeName = routeNames[route];
 		newElement += '<div class="routesection"><dt class="routeheader">';
 		newElement += routeName;
-		newElement += '</dt><dd><a class="btn btn-default" id="';
+		newElement += '</dt><dd><a class="btn btn-default" id="deleteroute';
 		newElement += route;
 		newElement += '">Delete</a></dd>';
 		// newElement += '<tr><td>Filename matches</td><td>';
@@ -64,6 +64,15 @@ function updateRouteList(routeList) {
 		// newElement += '</td></tr>';
 		newElement += '<dt class="key">URL matches</dt><dd class="value">';
 		newElement += routeList[routeName].urlMatch;
+		newElement += '</dd><dt class="key">Enabled</dt><dd class="value">';
+		newElement += '<input id="enabledcheckbox';
+		newElement += route;
+		newElement += '" type="checkbox" ';
+		console.log("Checked?", routeList[routeName].enabled);
+		if (routeList[routeName].enabled) {
+			newElement += 'checked';
+		}
+		newElement += '></input>';
 		newElement += '</dd></div>';
 	}
 	newElement += '';
@@ -71,7 +80,10 @@ function updateRouteList(routeList) {
 	$('#routelist').append(newElement);
 
 	$.each(routeNames, function(index, value) {
-		$('#' + index).click(function(event) {
+		$('#enabledcheckbox' + index).click(function(event) {
+			setRouteEnabled(value, this.checked);
+		});
+		$('#deleteroute' + index).click(function(event) {
 			deleteRoute(value);
 			$.growl({ title: "Deleted!", message: "Route " + value + " deleted!" });
 		});

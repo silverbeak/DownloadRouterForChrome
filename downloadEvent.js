@@ -13,6 +13,7 @@ var downloadCallback = function(downloadItem, suggest) {
   var targetDirectory = '';
 
   for (var i = routeKeys.length - 1; i >= 0; i--) {
+    if (!myRoutes[routeKeys[i]].enabled) continue;
     var myRegexp = new RegExp(myRoutes[routeKeys[i]].urlMatch);
     var match = myRegexp.exec(downloadItem.url);
 
@@ -51,6 +52,7 @@ var changeCallback = function(downloadDelta) {
 var updateSettingsCallback = function(settings) { mySettings = settings; };
 
 addSettingsUpdateCallback(updateSettingsCallback);
+addDbUpdateCallback(onRoutesRead);
 readRoutesFromDb(onRoutesRead);
 readSettings(updateSettingsCallback);
 chrome.downloads.onDeterminingFilename.addListener(downloadCallback);
