@@ -1,0 +1,38 @@
+.routesection {
+	padding: 5px;
+	margin-top: 10px;
+	border: 1px solid;
+	border-radius: 10px;
+}
+
+dt {
+  float: left;
+  clear: left;
+  margin: 0;
+  padding: 0 .5em 0 0;
+}
+dd {
+  margin: 0;
+  margin-left: 20em;
+  padding: 0;
+}
+
+.key:after {
+  content: ":";
+}
+
+.key {
+	color: gray;
+}
+
+.newroute {
+	margin-bottom: .5em;
+	margin-top: .5em;
+}
+
+footer {
+	position: fixed;
+	height: 2em;
+	bottom: 2em;
+	right: 1em;
+}
