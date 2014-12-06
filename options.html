@@ -17,7 +17,7 @@
 				<a class="btn btn-default" id="newroutebtn">New Route</a>
 			</div>
 
-			<div id="newroute">
+			<div id="newroute" class="newroute">
 				<div class="form-group">
 					<input type="text" class="form-control" id="newroutename" placeholder="Route Name"></input>
 				</div>
@@ -26,9 +26,17 @@
 					<input type="text" class="form-control" id="urltext" placeholder="URL Contains"></input>
 				</div>
 
+			<!-- Not sure when/if to implement this
 				<div class="form-group">
 					<input type="text" class="form-control" id="filenametext" placeholder="Filename Contains"></input>
 				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="targetfoldertext" placeholder="Target Folder"></input>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="targetfilenametext" placeholder="Target Filename"></input>
+				</div>
+			-->
 
 				<button type="submit" class="btn btn-default" id="save">Save</button>
 			</div>
@@ -52,9 +60,14 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="./js/growl/stylesheets/jquery.growl.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/options.css">
 	
 	<script src="js/bootstrap.min.js"></script>
 
+	<footer>
+		Created by<br />
+		<a href="http://embermake.com"><b>Kristofer Jarl</b></a>
+	</footer>
 
 </body>
 </html>
