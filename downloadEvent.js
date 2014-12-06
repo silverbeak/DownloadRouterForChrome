@@ -39,7 +39,7 @@ var changeCallback = function(downloadDelta) {
         type: "basic",
         title: "Downloading",
         message: "'" + thisDownload.filename + "' finished downloading to '" + thisDownload.targetDirectory + "'",
-        iconUrl: "arrow-down-b.png"
+        iconUrl: "./img/icon.png"
       };
       chrome.notifications.create('', opt, function() {});
 

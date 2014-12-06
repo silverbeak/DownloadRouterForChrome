@@ -8,6 +8,11 @@
     "scripts": [ "js/dbHelper.js", "downloadEvent.js" ],
     "persistent": false
   },
+  "icons": {
+    "16": "img/icon.png",
+    "48": "img/icon.png",
+    "128": "img/icon.png"
+    },
 
   "options_page": "options.html",
 
@@ -30,6 +35,6 @@
     "https://code.jquery.com/"
   ],
   "browser_action": {
-    "default_icon": "arrow-down-b.png"
+    "default_icon": "./img/icon.png"
   }
 }
