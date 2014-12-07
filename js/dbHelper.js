@@ -1,6 +1,19 @@
 var callbackList = [];
 var settingsCallbackList = [];
 
+var sortRoutes = function(routes) {
+	var arr = [];
+	for (var key in routes) {
+		if (routes.hasOwnProperty(key)) {
+			arr.push(routes[key]);
+		}
+	}
+
+	return arr.sort(function(a, b) {
+		return a.prio - b.prio;
+	});
+};
+
 var onDbUpdate = function(changes, namespace) {
 	var updateKeys = Object.keys(changes);
 
@@ -12,8 +25,9 @@ var onDbUpdate = function(changes, namespace) {
 
 	if(updateKeys.indexOf('routes') !== -1) {
 		readRoutesFromDb(function(routes) {
+			var routeList = sortRoutes(routes);
 			for (var i = callbackList.length - 1; i >= 0; i--) {
-				callbackList[i](routes);
+				callbackList[i](routeList);
 			}
 		});
 	}
@@ -31,13 +45,15 @@ function readRoutesFromDb(callback) {
 	chrome.storage.local.get({
 		'routes': {
 			'Any Domain': {
+				'name': 'Default',
 				'urlMatch': "^.*\\:[\\/]*[w\\.]*([\\w\\.]*)\\/",
 				'filenameMatch': "",
-				'enabled': true
+				'enabled': true,
+				'prio': 0
 			}
 		}
 	}, function(items) {
-		callback(items.routes);
+		callback(sortRoutes(items.routes));
 	});
 }
 
@@ -49,21 +65,24 @@ function readSettings(callback) {
 	});
 }
 
-function saveRoute(routeName, urlMatch, fileNameMatch, onSave) {
+function saveRoute(routeName, urlMatch, fileNameMatch, prio, onSave) {
 	var newRoute = {
+		'name': routeName,
 		'urlMatch': urlMatch,
-		'filenameMatch': fileNameMatch
+		'filenameMatch': fileNameMatch,
+		'prio': prio,
+		'enabled': true
 	};
 
 	readRoutesFromDb(function(routes) {
-		routes[routeName] = newRoute;
+		routes.push(newRoute);
 		chrome.storage.local.set({'routes': routes}, onSave(routeName));
 	});
 }
 
-function setRouteEnabled(routeName, value) {
+function setRouteEnabled(index, value) {
 	readRoutesFromDb(function(routes) {
-		routes[routeName].enabled = value;
+		routes[index].enabled = value;
 		saveAllRoutes(routes);
 	});
 }
@@ -76,9 +95,9 @@ function saveSettings(settings, callback) {
 	chrome.storage.local.set({'settings': settings}, callback);
 }
 
-function deleteRoute(routeName) {
+function deleteRoute(index) {
 	readRoutesFromDb(function(routes) {
-		delete routes[routeName];
+		routes.splice(index, 1);
 		saveAllRoutes(routes);
 	});
 }

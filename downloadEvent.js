@@ -12,16 +12,17 @@ var downloadCallback = function(downloadItem, suggest) {
   var routeKeys = Object.keys(myRoutes);
   var targetDirectory = '';
 
-  for (var i = routeKeys.length - 1; i >= 0; i--) {
-    if (!myRoutes[routeKeys[i]].enabled) continue;
-    var myRegexp = new RegExp(myRoutes[routeKeys[i]].urlMatch);
-    var match = myRegexp.exec(downloadItem.url);
+  $.each(myRoutes, function(index, route) {
+    if (route.enabled) {
+      var myRegexp = new RegExp(route.urlMatch);
+      var match = myRegexp.exec(downloadItem.url);
 
-    if (match !== null && typeof match[1] !== 'undefined') {
-      targetDirectory = match[1];
-      newFilename = match[1] + '/' + downloadItem.filename;
+      if (match !== null && typeof match[1] !== 'undefined') {
+        targetDirectory = match[1];
+        newFilename = match[1] + '/' + downloadItem.filename;
+      }
     }
-  }
+  });
 
   myDownloads[downloadItem.id] = {
     targetDirectory: targetDirectory,

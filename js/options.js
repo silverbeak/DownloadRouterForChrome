@@ -31,7 +31,7 @@ $(function() {
 		var filenameMatch = null;
 
 		if (typeof routeName !== 'undefined' && routeName !== '') {
-			saveRoute(routeName, urlMatch, filenameMatch, onSaveFunction);
+			saveRoute(routeName, urlMatch, filenameMatch, 1, onSaveFunction);
 		}
 		$("#newroutename").val("");
 		$("#urltext").val("");
@@ -49,43 +49,49 @@ $(function() {
 });
 
 function updateRouteList(routeList) {
+	console.log('Got this list:', routeList);
 	$('#routelist').html('');
-	var routeNames = Object.keys(routeList);
 	var newElement = '<div class="allroutes">';
-	for (var route in routeNames) {
-		var routeName = routeNames[route];
+	$.each(routeList, function(index, route) {
+		console.log('IV', index, route);
+		var routeName = route.name;
 		newElement += '<div class="routesection"><dt class="routeheader">';
-		newElement += routeName;
+		newElement += route.name;
 		newElement += '</dt><dd><a class="btn btn-default" id="deleteroute';
-		newElement += route;
+		newElement += index;
 		newElement += '">Delete</a></dd>';
 		// newElement += '<tr><td>Filename matches</td><td>';
 		// newElement += routeList[routeName].filenameMatch;
 		// newElement += '</td></tr>';
 		newElement += '<dt class="key">URL matches</dt><dd class="value">';
-		newElement += routeList[routeName].urlMatch;
+		newElement += route.urlMatch;
 		newElement += '</dd><dt class="key">Enabled</dt><dd class="value">';
 		newElement += '<input id="enabledcheckbox';
-		newElement += route;
+		newElement += index;
 		newElement += '" type="checkbox" ';
-		console.log("Checked?", routeList[routeName].enabled);
-		if (routeList[routeName].enabled) {
+		console.log("Checked?", route.enabled);
+		if (route.enabled) {
 			newElement += 'checked';
 		}
 		newElement += '></input>';
 		newElement += '</dd></div>';
-	}
+	});
 	newElement += '';
 	newElement += '</div>';
 	$('#routelist').append(newElement);
 
-	$.each(routeNames, function(index, value) {
+	$.each(routeList, function(index, value) {
+		console.log('Value', value.name);
 		$('#enabledcheckbox' + index).click(function(event) {
-			setRouteEnabled(value, this.checked);
+			setRouteEnabled(index, this.checked);
+			var action;
+			if (this.checked) { action = 'enabled'; }
+			else { action = 'disabled'; }
+			$.growl({ title: "Route change", message: "Route " + value.name + " " + action + "." });
 		});
 		$('#deleteroute' + index).click(function(event) {
-			deleteRoute(value);
-			$.growl({ title: "Deleted!", message: "Route " + value + " deleted!" });
+			deleteRoute(index);
+			$.growl({ title: "Deleted!", message: "Route " + value.name + " deleted!" });
 		});
 	});
 }
