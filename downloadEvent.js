@@ -18,8 +18,24 @@ var downloadCallback = function(downloadItem, suggest) {
       var match = myRegexp.exec(downloadItem.url);
 
       if (match !== null && typeof match[1] !== 'undefined') {
-        targetDirectory = match[1];
-        newFilename = match[1] + '/' + downloadItem.filename;
+        var targetMatch = route.targetDirectory.match(/\$\d/g);
+        var targetMatchCount = 0;
+        if (targetMatch) {
+          targetMatchCount = targetMatch.length;
+        }
+
+        targetDirectory = route.targetDirectory;
+
+        for (var i = 0; i <= targetMatchCount; i++) {
+            console.log("This is a match", i, match[i]);
+            targetDirectory = targetDirectory.replace("$" + i, match[i]);
+        }
+
+        if (targetDirectory !== '') {
+          newFilename = targetDirectory + '/' + downloadItem.filename;
+        } else {
+          newFilename = downloadItem.filename;
+        }
       }
     }
   });
@@ -28,6 +44,8 @@ var downloadCallback = function(downloadItem, suggest) {
     targetDirectory: targetDirectory,
     filename: newFilename
   };
+
+  console.log('Suggesting filename', newFilename);
 
   suggest( {
     filename: newFilename

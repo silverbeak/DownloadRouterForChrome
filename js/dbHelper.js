@@ -9,9 +9,7 @@ var sortRoutes = function(routes) {
 		}
 	}
 
-	return arr.sort(function(a, b) {
-		return a.prio - b.prio;
-	});
+	return arr.sort(function(a, b) { return a.prio - b.prio; });
 };
 
 var onDbUpdate = function(changes, namespace) {
@@ -49,7 +47,8 @@ function readRoutesFromDb(callback) {
 				'urlMatch': "^.*\\:[\\/]*[w\\.]*([\\w\\.]*)\\/",
 				'filenameMatch': "",
 				'enabled': true,
-				'prio': 0
+				'prio': 0,
+				'targetDirectory': "$1"
 			}
 		}
 	}, function(items) {
@@ -65,13 +64,14 @@ function readSettings(callback) {
 	});
 }
 
-function saveRoute(routeName, urlMatch, fileNameMatch, prio, onSave) {
+function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, onSave) {
 	var newRoute = {
 		'name': routeName,
 		'urlMatch': urlMatch,
 		'filenameMatch': fileNameMatch,
 		'prio': prio,
-		'enabled': true
+		'enabled': true,
+		'targetDirectory': targetDirectory
 	};
 
 	readRoutesFromDb(function(routes) {
@@ -88,7 +88,7 @@ function setRouteEnabled(index, value) {
 }
 
 function saveAllRoutes(routes) {
-	chrome.storage.local.set({'routes': routes}, function() { console.log('Yes, it saved something');});
+	chrome.storage.local.set({'routes': routes}, function() {});
 }
 
 function saveSettings(settings, callback) {
@@ -103,3 +103,4 @@ function deleteRoute(index) {
 }
 
 chrome.storage.onChanged.addListener(onDbUpdate);
+// chrome.storage.local.clear(function() { console.log('CLEARED!'); });

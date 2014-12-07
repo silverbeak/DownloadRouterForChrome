@@ -1,8 +1,9 @@
 .routesection {
-	padding: 5px;
+	padding: 10px;
 	margin-top: 10px;
 	border: 1px solid;
-	border-radius: 10px;
+	border-radius: 5px;
+	width: 70%;
 }
 
 dt {
@@ -38,5 +39,5 @@ footer {
 }
 
 .settingssection {
-	margin: 1em;
+	margin: 0 1em 1em 0;
 }

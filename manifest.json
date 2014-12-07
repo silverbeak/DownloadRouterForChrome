@@ -2,8 +2,9 @@
   "manifest_version": 2,
 
   "name": "Download Router",
+  "short_name": "DL Router",
   "description": "Allows you to route your downloads to custom target folders.",
-  "version": "1.0",
+  "version": "0.0.1",
   "background": {
     "scripts": [ "js/jquery-2.1.1.min.js", "js/dbHelper.js", "downloadEvent.js" ],
     "persistent": false
@@ -26,6 +27,8 @@
     ],
     "matches": ["http://*/*", "https://*/*"]
   }],
+
+  "author": "Kristofer Jarl",
 
   "permissions": [
     "downloads",

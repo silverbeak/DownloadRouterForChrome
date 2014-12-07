@@ -27,21 +27,22 @@ $(function() {
 	$("#save").click(function() {
 		var routeName = $("#newroutename").val();
 		var urlMatch = $("#urltext").val();
-		//var filenameMatch = $("#filenametext").val();
+		var targetDirectory = $("#targetdirectorytext").val();
 		var filenameMatch = null;
 
 		if (typeof routeName !== 'undefined' && routeName !== '') {
-			saveRoute(routeName, urlMatch, filenameMatch, 1, onSaveFunction);
+			saveRoute(routeName, urlMatch, filenameMatch, targetDirectory, 1, onSaveFunction);
 		}
 		$("#newroutename").val("");
 		$("#urltext").val("");
 		$("#filenametext").val("");
+		$("#targetdirectorytext").val("");
 		$("#newroute").hide();
 	});
 
 	$("#shownotificationcheckbox").click(function() {
 		mySettings.showNotificationOnDownload = this.checked;
-		saveSettings(mySettings, function() { console.log('Saved settings'); });
+		saveSettings(mySettings, function() {});
 	});
 
 	addSettingsUpdateCallback(settingsUpdatedFunc);
@@ -74,6 +75,10 @@ function updateRouteList(routeList) {
 			newElement += 'checked';
 		}
 		newElement += '></input>';
+		newElement += '</dd><dt class="key">';
+		newElement += 'Target Directory';
+		newElement += '</dt><dd class="value">';
+		newElement += route.targetDirectory;
 		newElement += '</dd></div>';
 	});
 	newElement += '';
