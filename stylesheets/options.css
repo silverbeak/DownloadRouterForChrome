@@ -35,8 +35,15 @@ footer {
 	position: fixed;
 	height: 2em;
 	bottom: 2em;
-	right: 1em;
 	margin-bottom: 1em;
+}
+
+.rightfooter {
+	right: 1em;
+}
+
+.leftfooter {
+	left: 1em;
 }
 
 .settingssection {
@@ -49,6 +56,4 @@ footer {
 	font-size: large;
 }
 
-.helpsection {
-	
-}
+.helpsection {}
