@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>Download router help page</title>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<h1>Download router help page</h1>
+			<small>Ok, I got it. <a href="./options.html">take me back</a></small>
+		</div>
+		
+		<div class="row">
+			<div class="col helpheader">
+				What is the download router?
+			</div>
+			<div class="col helpsection">
+				The download router is here to help you keep your download folder tidy. Define how you want to organize your downloads folder, and download router takes care of the rest.
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col helpheader">
+				But how do I use it?
+			</div>
+			<div class="col helpsection">
+				<p>
+				Download Router functions by means of "route rules". Apart from having a name (which is just a name, nothing else), a route rule consists of two main parts: A URL-matcher and a Target Directory. The URL-matcher is a regular expression that should match the url for which you want the route rule to trigger. This may be something like this: .*example\.com.*
+				</p><p>
+				The Target Directory setting for a route rule is simply the target for the downloaded file. A setting like "MyFolder" will simply put the files that are picked up by this route in a folder called "MyFolder".
+				</p><p>
+				The Target Directory may also be a bit more dynamic, using groups from the URL-matcher. If your URL-matcher looks like this: .*(example\d+).* and your TargetDirectory is $1, your files will be downloaded to a folder called "exampleX" where X is a number that matches the domainname from which you download.
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col helpheader">
+				What's a regular expression (regex)?
+			</div>
+			<div class="col helpsection">
+				Regular expressions are common in the world of computer programming, and there's no chance in a blue moon that I can cover it here. If you don't know what a regular expression is, please take comfort in the fact that the default route provided with the extension is probably going to be enough for most of your needs. In case you still feel you have too much time on your hands, there are several good resources on the web for <a href="http://www.regexr.com/"> learning about regular expressions</a>.
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col helpheader">
+				What's this default route thingy?
+			</div>
+			<div class="col helpsection">
+				The default route thingy is simply the most logical way to start using Download Router. It will put your content in a folder named after the domain from which you download it, but without any leading www:s.
+				Eg, if you download a file called myfile.txt from the url http://www.example.com/some/path/here/myfile.txt, Download Router will put your file in a folder called "example.com" in your downloads folder.
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col helpheader">
+				I want to be able to edit my existing routes
+			</div>
+			<div class="col helpsection">
+				That's a good idea. Download Router is still in development mode, and I may introduce that functionality some day.
+			</div>
+		</div>
+
+				<div class="row">
+			<div class="col helpheader">
+				I want feature X
+			</div>
+			<div class="col helpsection">
+				Interesting! Shoot me an email and let me know. If/when I have time, and if the feature request seems to be in line with what Download Router is intended for, I will make it happen.
+			</div>
+		</div>
+
+				<div class="row">
+			<div class="col helpheader">
+				I'm a developer, and I want to help
+			</div>
+			<div class="col helpsection">
+				You're more than welcome to do so. The code is available at <a href="https://github.com/silverbeak/DownloadRouterForChrome">github</a> Send me a pull request.
+			</div>
+		</div>
+
+	</div>
+
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/options.css">
+
+	<footer>
+		Created by<br />
+		<a href="mailto:kristofer.jarl@gmail.com"><b>Kristofer Jarl</b></a>
+		<br />
+		<a href="./credits.html">Credits</a>
+	</footer>
+</body>
+</html>

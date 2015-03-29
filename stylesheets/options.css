@@ -36,8 +36,19 @@ footer {
 	height: 2em;
 	bottom: 2em;
 	right: 1em;
+	margin-bottom: 1em;
 }
 
 .settingssection {
-	margin: 0 1em 1em 0;
+	margin: 1em 1em 1em 0;
+}
+
+.helpheader {
+	margin-top: .5em;
+	font-weight: bolder;
+	font-size: large;
+}
+
+.helpsection {
+	
 }
