@@ -27,7 +27,6 @@ var downloadCallback = function(downloadItem, suggest) {
         targetDirectory = route.targetDirectory;
 
         for (var i = 0; i <= targetMatchCount; i++) {
-            console.log("This is a match", i, match[i]);
             targetDirectory = targetDirectory.replace("$" + i, match[i]);
         }
 
@@ -44,8 +43,6 @@ var downloadCallback = function(downloadItem, suggest) {
     targetDirectory: targetDirectory,
     filename: newFilename
   };
-
-  console.log('Suggesting filename', newFilename);
 
   suggest( {
     filename: newFilename

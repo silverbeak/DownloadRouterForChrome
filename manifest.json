@@ -21,6 +21,7 @@
     "js": [
       "js/jquery-2.1.1.min.js",
       "js/bootstrap.min.js",
+      "js/routeListHelper.js",
       "js/dbHelper.js",
       "js/options.js",
       "js/growl/javascripts/jquery.growl.js"
