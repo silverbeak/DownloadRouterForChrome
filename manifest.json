@@ -4,9 +4,14 @@
   "name": "Download Router",
   "short_name": "DL Router",
   "description": "Allows you to route your downloads to custom target folders.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "background": {
-    "scripts": [ "js/jquery-2.1.1.min.js", "js/dbHelper.js", "downloadEvent.js" ],
+    "scripts": [ 
+      "js/background.js",
+      "js/jquery-2.1.1.min.js",
+      "js/dbHelper.js",
+      "js/downloadEvent.js" 
+    ],
     "persistent": false
   },
   "icons": {
@@ -32,6 +37,7 @@
   "author": "Kristofer Jarl",
 
   "permissions": [
+    "tabs",
     "downloads",
     "storage",
     "notifications",
