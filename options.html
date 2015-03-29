@@ -26,11 +26,23 @@
 
 			<div id="newroute" class="newroute">
 				<div class="form-group">
-					<input type="text" class="form-control" id="newroutename" placeholder="Route Name"></input>
+					<label for="newroutename">Route name</label>
+					<input 
+						type="text"
+						class="form-control"
+						id="newroutename"
+						placeholder="This is just the name of the route, it can be whatever you like">
+					</input>
 				</div>
 
 				<div class="form-group">
-					<input type="text" class="form-control" id="urltext" placeholder="URL Contains"></input>
+					<label for="urltext">URL Contains</label>
+					<input
+						type="text"
+						class="form-control"
+						id="urltext"
+						placeholder="This is a regex expression for matching the url">
+					</input>
 				</div>
 
 			<!-- Not sure when/if to implement this
@@ -38,7 +50,13 @@
 					<input type="text" class="form-control" id="filenametext" placeholder="Filename Contains"></input>
 				</div> -->
 				<div class="form-group">
-					<input type="text" class="form-control" id="targetdirectorytext" placeholder="Target Directory"></input>
+					<label for="targetdirectorytext">Target Directory</label>
+					<input
+						type="text"
+						class="form-control"
+						id="targetdirectorytext"
+						placeholder="The name of your target directory. It may contain groups from the regex field above.">
+					</input>
 				</div>
 				<!-- <div class="form-group">
 					<input type="text" class="form-control" id="targetfilenametext" placeholder="Target Filename"></input>
