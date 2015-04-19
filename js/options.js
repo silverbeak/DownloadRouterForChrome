@@ -18,26 +18,10 @@ var settingsUpdatedFunc = function(newValue) {
 
 $(function() {
 
-	$("#newroute").hide();
-
-	$("#newroutebtn").click(function() {
-		$("#newroute").toggle();
-	});
-
-	$("#save").click(function() {
-		var routeName = $("#newroutename").val();
-		var urlMatch = $("#urltext").val();
-		var targetDirectory = $("#targetdirectorytext").val();
-		var filenameMatch = null;
-
-		if (typeof routeName !== 'undefined' && routeName !== '') {
-			saveRoute(routeName, urlMatch, filenameMatch, targetDirectory, 1, onSaveFunction);
-		}
-		$("#newroutename").val("");
-		$("#urltext").val("");
-		$("#filenametext").val("");
-		$("#targetdirectorytext").val("");
-		$("#newroute").hide();
+	$('#newroutebtn').click(function(event) {
+		$.modal(editTemplate(-1, emptyRoute), {
+			onShow: saveRouteBtnClick(-1)
+		});
 	});
 
 	$("#shownotificationcheckbox").click(function() {

@@ -4,13 +4,13 @@
   "name": "Download Router",
   "short_name": "DL Router",
   "description": "Allows you to route your downloads to custom target folders.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "background": {
-    "scripts": [ 
+    "scripts": [
       "js/background.js",
       "js/jquery-2.1.1.min.js",
       "js/dbHelper.js",
-      "js/downloadEvent.js" 
+      "js/downloadEvent.js"
     ],
     "persistent": false
   },
@@ -29,7 +29,10 @@
       "js/routeListHelper.js",
       "js/dbHelper.js",
       "js/options.js",
-      "js/growl/javascripts/jquery.growl.js"
+      "js/growl/javascripts/jquery.growl.js",
+      "js/simplemodal/js/jquery.simplemodal.js",
+      "js/simplemodal/js/basic.js",
+      "js/saveHelper.js"
     ],
     "matches": ["http://*/*", "https://*/*"]
   }],

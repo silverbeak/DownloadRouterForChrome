@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col">
 			<h1>Download Router Settings</h1>
-			<small>I don't know where to start. <a href="./help.html">Help me, please...</a></small>
+			<small>I don't know where to start. <b><a href="./help.html">Help me, please...</a></b></small>
 		</div>
 	</div>
 
@@ -23,48 +23,6 @@
 		<div class="col">
 			<div>
 				<a class="btn btn-default" id="newroutebtn">New Route</a>
-			</div>
-
-			<div id="newroute" class="newroute">
-				<div class="form-group">
-					<label for="newroutename">Route name</label>
-					<input 
-						type="text"
-						class="form-control"
-						id="newroutename"
-						placeholder="This is just the name of the route, it can be whatever you like">
-					</input>
-				</div>
-
-				<div class="form-group">
-					<label for="urltext">URL Contains</label>
-					<input
-						type="text"
-						class="form-control"
-						id="urltext"
-						placeholder="This is a regex expression for matching the url">
-					</input>
-				</div>
-
-			<!-- Not sure when/if to implement this
-				<div class="form-group">
-					<input type="text" class="form-control" id="filenametext" placeholder="Filename Contains"></input>
-				</div> -->
-				<div class="form-group">
-					<label for="targetdirectorytext">Target Directory</label>
-					<input
-						type="text"
-						class="form-control"
-						id="targetdirectorytext"
-						placeholder="The name of your target directory. It may contain groups from the regex field above.">
-					</input>
-				</div>
-				<!-- <div class="form-group">
-					<input type="text" class="form-control" id="targetfilenametext" placeholder="Target Filename"></input>
-				</div>
-			-->
-
-				<button type="submit" class="btn btn-default" id="save">Save</button>
 			</div>
 		</div>
 	</div>
@@ -83,12 +41,14 @@
 	<script src="js/options.js"></script>
 	<script src="js/dbHelper.js"></script>
 	<script src="js/growl/javascripts/jquery.growl.js" type="text/javascript"></script>
+	<script src="js/simplemodal/js/jquery.simplemodal.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="./js/growl/stylesheets/jquery.growl.css">
+	<link rel="stylesheet" type="text/css" href="./js/simplemodal/css/basic.css">
 	<link rel="stylesheet" type="text/css" href="./stylesheets/options.css">
-	
+
 	<script src="js/bootstrap.min.js"></script>
 
 	<footer class="leftfooter">

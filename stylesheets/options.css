@@ -6,6 +6,10 @@
 	width: 70%;
 }
 
+.editroute {
+    max-width: 620px;
+}
+
 dt {
   float: left;
   clear: left;

@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col">
+
+        <div class="editroute">
+            <div class="form-group">
+                <label for="newroutename">Route name</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="newroutename"
+                    placeholder="This is just the name of the route, it can be whatever you like"
+                    value="$routename$">
+                </input>
+            </div>
+
+            <div class="form-group">
+                <label for="urltext">URL Contains</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="urltext"
+                    placeholder="This is a regex expression for matching the url"
+                    value="$urlMatch$">
+                </input>
+            </div>
+
+            <div class="form-group">
+                <label for="targetdirectorytext">Target Directory</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="targetdirectorytext"
+                    placeholder="The name of your target directory. It may contain groups from the regex field above"
+                    value="$targetDirectory$">
+                </input>
+            </div>
+
+            <button type="submit" class="btn btn-default" class="save" id="save">Save</button>
+
+        </div>
+    </div>
+</div>

@@ -64,7 +64,7 @@ function readSettings(callback) {
 	});
 }
 
-function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, onSave) {
+function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, onSave, index) {
 	var newRoute = {
 		'name': routeName,
 		'urlMatch': urlMatch,
@@ -74,8 +74,16 @@ function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, on
 		'targetDirectory': targetDirectory
 	};
 
+
 	readRoutesFromDb(function(routes) {
-		routes.push(newRoute);
+		if (typeof index === 'undefined' || index === -1) {
+			// New route, just push to object
+			routes.push(newRoute);
+		} else {
+			// Update existing route
+			routes[index] = newRoute;
+		}
+
 		chrome.storage.local.set({'routes': routes}, onSave(routeName));
 	});
 }
