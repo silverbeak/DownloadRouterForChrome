@@ -31,8 +31,7 @@
       "js/options.js",
       "js/growl/javascripts/jquery.growl.js",
       "js/simplemodal/js/jquery.simplemodal.js",
-      "js/simplemodal/js/basic.js",
-      "js/saveHelper.js"
+      "js/simplemodal/js/basic.js"
     ],
     "matches": ["http://*/*", "https://*/*"]
   }],
