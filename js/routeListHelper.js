@@ -1,9 +1,12 @@
 'use strict';
 
 var editRouteTemplate = null;
-$.get('./templates/editroute.html', function(routeTemplate) {
-	editRouteTemplate = routeTemplate;
-});
+
+if(location.protocol === 'chrome-extension:' && chrome.runtime.id === location.hostname) {
+	$.get('./templates/editroute.html', function(routeTemplate) {
+		editRouteTemplate = routeTemplate;
+	});
+}
 
 var saveRouteBtnClick = function(index) {
 	return function() {
