@@ -4,7 +4,7 @@
   "name": "Download Router",
   "short_name": "DL Router",
   "description": "Allows you to route your downloads to custom target folders.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "background": {
     "scripts": [
       "js/background.js",
