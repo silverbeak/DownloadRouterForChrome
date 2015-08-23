@@ -4,11 +4,17 @@
   "name": "Download Router",
   "short_name": "DL Router",
   "description": "Allows you to route your downloads to custom target folders.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "background": {
     "scripts": [
-      "js/background.js",
       "js/jquery-2.1.1.min.js",
+      "js/bootstrap.min.js",
+      "js/growl/javascripts/jquery.growl.js",
+      "js/simplemodal/js/jquery.simplemodal.js",
+      "js/simplemodal/js/basic.js",
+      "js/routeListHelper.js",
+      "js/background.js",
+      "js/options.js",
       "js/dbHelper.js",
       "js/downloadEvent.js"
     ],
@@ -21,20 +27,6 @@
     },
 
   "options_page": "options.html",
-
-  "content_scripts": [{
-    "js": [
-      "js/jquery-2.1.1.min.js",
-      "js/bootstrap.min.js",
-      "js/routeListHelper.js",
-      "js/dbHelper.js",
-      "js/options.js",
-      "js/growl/javascripts/jquery.growl.js",
-      "js/simplemodal/js/jquery.simplemodal.js",
-      "js/simplemodal/js/basic.js"
-    ],
-    "matches": ["http://*/*", "https://*/*"]
-  }],
 
   "author": "Kristofer Jarl",
 
