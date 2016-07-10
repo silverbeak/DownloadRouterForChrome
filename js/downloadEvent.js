@@ -6,38 +6,45 @@ var onRoutesRead = function(routes) {
   myRoutes = routes;
 };
 
+var applyRoute = function(downloadRoute, url) {
+  var target = url.match(new RegExp(downloadRoute.urlMatch));
+
+  var targetMatch = downloadRoute.targetDirectory.match(/\$\d/g);
+  var targetMatchCount = 0;
+  if (targetMatch) {
+    targetMatchCount = targetMatch.length;
+  }
+
+  targetDirectory = downloadRoute.targetDirectory;
+
+  for (var i = targetMatchCount; i >= 0; i--) {
+      targetDirectory = targetDirectory.replace("$" + i, target[i]);
+  }
+
+  return targetDirectory;
+}
+
+var isRouteMatch = function(downloadItemUrl, route) {
+  if (!route.enabled) return false;
+
+  var myRegexp = new RegExp(route.urlMatch);
+  var match = myRegexp.exec(downloadItemUrl);
+
+  return (match !== null && typeof match[1] !== 'undefined')
+}
+
 var downloadCallback = function(downloadItem, suggest) {
   var newFilename = downloadItem.filename;
 
-  var routeKeys = Object.keys(myRoutes);
   var targetDirectory = '';
 
-  $.each(myRoutes, function(index, route) {
-    if (route.enabled) {
-      var myRegexp = new RegExp(route.urlMatch);
-      var match = myRegexp.exec(downloadItem.url);
+  var foundRoute = _.find(myRoutes, isRouteMatch.bind(this, downloadItem.url));
 
-      if (match !== null && typeof match[1] !== 'undefined') {
-        var targetMatch = route.targetDirectory.match(/\$\d/g);
-        var targetMatchCount = 0;
-        if (targetMatch) {
-          targetMatchCount = targetMatch.length;
-        }
-
-        targetDirectory = route.targetDirectory;
-
-        for (var i = 0; i <= targetMatchCount; i++) {
-            targetDirectory = targetDirectory.replace("$" + i, match[i]);
-        }
-
-        if (targetDirectory !== '') {
-          newFilename = targetDirectory + '/' + downloadItem.filename;
-        } else {
-          newFilename = downloadItem.filename;
-        }
-      }
-    }
-  });
+  if (foundRoute) {
+    targetDirectory = applyRoute(foundRoute, downloadItem.url);
+    targetDirectory = injectDate(targetDirectory);
+    newFilename = downloadItem.filename;
+  }
 
   myDownloads[downloadItem.id] = {
     targetDirectory: targetDirectory,
@@ -45,7 +52,7 @@ var downloadCallback = function(downloadItem, suggest) {
   };
 
   suggest( {
-    filename: newFilename
+    filename: targetDirectory + '/' + newFilename
   });
 };
 
