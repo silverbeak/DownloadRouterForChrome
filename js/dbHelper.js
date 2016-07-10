@@ -79,9 +79,11 @@ function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, on
 		if (typeof index === 'undefined' || index === -1) {
 			// New route, just push to object
 			routes.push(newRoute);
+			ga.event('Route', 'Created', routeName, 0);
 		} else {
 			// Update existing route
 			routes[index] = newRoute;
+			ga.event('Route', 'Updated', routeName, 1);
 		}
 
 		chrome.storage.local.set({'routes': routes}, onSave(routeName));
@@ -92,7 +94,10 @@ function setRouteEnabled(index, value) {
 	readRoutesFromDb(function(routes) {
 		routes[index].enabled = value;
 		saveAllRoutes(routes);
+		if (value) ga.event('Route', 'Enabled', routes[index].name);
+		else ga.event('Route', 'Disabled', routes[index].name);
 	});
+
 }
 
 function saveAllRoutes(routes) {
@@ -108,6 +113,7 @@ function deleteRoute(index) {
 		routes.splice(index, 1);
 		saveAllRoutes(routes);
 	});
+	ga.event('Route', 'Deleted');
 }
 
 chrome.storage.onChanged.addListener(onDbUpdate);

@@ -43,7 +43,6 @@ var downloadCallback = function(downloadItem, suggest) {
   if (foundRoute) {
     targetDirectory = applyRoute(foundRoute, downloadItem.url);
     targetDirectory = injectDate(targetDirectory);
-    newFilename = downloadItem.filename;
   }
 
   myDownloads[downloadItem.id] = {
