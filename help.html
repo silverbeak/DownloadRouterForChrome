@@ -43,6 +43,19 @@
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col helpheader">
+				How can I arrange my downloads in directories based on date?
+			</div>
+			<div class="col helpsection">
+				Since version 0.0.7, DownloadRouter has support for date-based sorting. In its simplest form, you use the format <i>$d{xxx}</i> in your Target Directory, where <i>xxx</i> is the date format you want. <br/>
+				 <i>Example 1</i>: To arrange into a directory with this month's numeral value (01 for January, 08 for August, etc), use this value for your Target Directory: <b>$d{MM}</b> <br/>
+				 <i>Example 2</i>: To arrange into a directory with this year's numeral value (four digits), use this value for your Target Directory: <b>$d{YYYY}</b> <br/>
+				 <i>Example 3</i>: To arrange into a directory with this year's numeral value (two digits), and a sub directory for each month, use this value for your Target Directory: <b>$d{YY}/$d{MM}</b> </br>
+				Behind the scenes, I'm using <i>moment.js</i>, so for more advanced formats, you can have a look at <a href="http://momentjs.com/docs/#/parsing/string-format/">the format sections</a> on their homepage, or shoot me an email and I'll help if I can.
+			</div>
+		</div>
+
 
 		<div class="row">
 			<div class="col helpheader">
