@@ -19,6 +19,8 @@
       "js/background.js",
       "js/options.js",
       "js/dbHelper.js",
+      "js/analytics/ga.js",
+      "js/analytics/gaq.js",
       "js/downloadEvent.js"
     ],
     "persistent": false

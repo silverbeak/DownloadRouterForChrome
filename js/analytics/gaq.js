@@ -8,7 +8,7 @@ var fakeGa = {
   exception: function() { printFake() }
 };
 
-enableAnalytics = function() {
+var enableAnalytics = function() {
   var ga = new ExtGA({
     trackingId : "UA-66737805-1", // Your Tracking Id
     trackingDns : "download-router.com", // Domain name that you created for the profile
@@ -21,9 +21,14 @@ enableAnalytics = function() {
   window.ga = ga;
 };
 
-disableAnalytics = function() {
+var disableAnalytics = function() {
   window.ga = fakeGa;
 };
 
-// TODO: Settings page should contain an 'opt-out' setting
-enableAnalytics();
+var updateSettingsCallback = function(settings) {
+  if (settings.allowAnonymousStatistics) enableAnalytics()
+  else disableAnalytics()
+}
+
+addSettingsUpdateCallback(updateSettingsCallback);
+readSettings(updateSettingsCallback);

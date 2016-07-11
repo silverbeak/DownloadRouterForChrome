@@ -43,6 +43,9 @@ var downloadCallback = function(downloadItem, suggest) {
   if (foundRoute) {
     targetDirectory = applyRoute(foundRoute, downloadItem.url);
     targetDirectory = injectDate(targetDirectory);
+    ga.event('Download', 'Route Found');
+  } else {
+    ga.event('Download', 'No Route Found');
   }
 
   myDownloads[downloadItem.id] = {
@@ -66,7 +69,7 @@ var changeCallback = function(downloadDelta) {
         iconUrl: "./img/icon.png"
       };
       chrome.notifications.create('', opt, function() {});
-
+      ga.event('Download', 'Complete');
     }
   }
 };

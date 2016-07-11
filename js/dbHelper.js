@@ -57,10 +57,13 @@ function readRoutesFromDb(callback) {
 }
 
 function readSettings(callback) {
-	chrome.storage.local.get({'settings': {
-		'showNotificationOnDownload': true
-	}}, function(items) {
-		callback(items.settings);
+	var defaultSettings = {'settings': {
+		'showNotificationOnDownload': true,
+		'allowAnonymousStatistics': true
+	}};
+
+	chrome.storage.local.get(defaultSettings, function(items) {
+		callback(Object.assign(defaultSettings, items.settings));
 	});
 }
 

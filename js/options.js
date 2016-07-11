@@ -7,6 +7,7 @@ var onSaveFunction = function(routeName) {
 
 var refreshSettingsOnPage = function() {
 	$("#shownotificationcheckbox").prop('checked', mySettings.showNotificationOnDownload);
+  $("#allowanonymousstatistics").prop('checked', mySettings.allowAnonymousStatistics);
 };
 
 var settingsUpdatedFunc = function(newValue) {
@@ -26,6 +27,11 @@ $(function() {
 
 	$("#shownotificationcheckbox").click(function() {
 		mySettings.showNotificationOnDownload = this.checked;
+		saveSettings(mySettings, function() {});
+	});
+
+  $("#allowanonymousstatistics").click(function() {
+		mySettings.allowAnonymousStatistics = this.checked;
 		saveSettings(mySettings, function() {});
 	});
 
