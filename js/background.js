@@ -3,34 +3,34 @@
 // This entire section is shamelessly stolen from Adam Feuer's blog. Here: http://adamfeuer.com/notes/2013/01/26/chrome-extension-making-browser-action-icon-open-options-page/
 
 function openOrFocusOptionsPage() {
-   var optionsUrl = chrome.extension.getURL('options.html'); 
-   chrome.tabs.query({}, function(extensionTabs) {
-      var found = false;
-      for (var i=0; i < extensionTabs.length; i++) {
-         if (optionsUrl == extensionTabs[i].url) {
-            found = true;
-            chrome.tabs.update(extensionTabs[i].id, {"selected": true});
-         }
+  var optionsUrl = chrome.extension.getURL('options.html');
+  chrome.tabs.query({}, function (extensionTabs) {
+    var found = false;
+    for (var i = 0; i < extensionTabs.length; i++) {
+      if (optionsUrl == extensionTabs[i].url) {
+        found = true;
+        chrome.tabs.update(extensionTabs[i].id, { "selected": true });
       }
-      if (found === false) {
-          chrome.tabs.create({url: "options.html"});
-      }
-   });
+    }
+    if (found === false) {
+      chrome.tabs.create({ url: "options.html" });
+    }
+  });
 }
 
-chrome.extension.onConnect.addListener(function(port) {
+chrome.extension.onConnect.addListener(function (port) {
   var tab = port.sender.tab;
   // This will get called by the content script we execute in
   // the tab as a result of the user pressing the browser action.
-  port.onMessage.addListener(function(info) {
+  port.onMessage.addListener(function (info) {
     var max_length = 1024;
     if (info.selection.length > max_length)
       info.selection = info.selection.substring(0, max_length);
-      openOrFocusOptionsPage();
+    openOrFocusOptionsPage();
   });
 });
 
 // Called when the user clicks on the browser action icon.
-chrome.browserAction.onClicked.addListener(function(tab) {
-   openOrFocusOptionsPage();
+chrome.browserAction.onClicked.addListener(function (tab) {
+  openOrFocusOptionsPage();
 });

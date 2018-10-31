@@ -1,7 +1,9 @@
 <html>
+
 <head>
 	<title>Download router help page</title>
 </head>
+
 <body>
 
 	<div class="container">
@@ -15,7 +17,8 @@
 				What is the Download Router?
 			</div>
 			<div class="col helpsection">
-				The download router is here to help you keep your download folder tidy. Define how you want to organize your downloads folder, and Download Router takes care of the rest.
+				The download router is here to help you keep your download folder tidy. Define how you want to organize your
+				downloads folder, and Download Router takes care of the rest.
 			</div>
 		</div>
 
@@ -25,11 +28,19 @@
 			</div>
 			<div class="col helpsection">
 				<p>
-				Download Router functions by means of "route rules". Apart from having a name (which is just a name, nothing else), a route rule consists of two main parts: A URL-matcher and a Target Directory. The URL-matcher is a regular expression that should match the url for which you want the route rule to trigger. This may be something like this: .*example\.com.*
-				</p><p>
-				The Target Directory setting for a route rule is simply the target for the downloaded file. A setting like "MyFolder" will simply put the files that are picked up by this route in a folder called "MyFolder".
-				</p><p>
-				The Target Directory may also be a bit more dynamic, using groups from the URL-matcher. If your URL-matcher looks like this: .*(example\d+).* and your TargetDirectory is $1, your files will be downloaded to a folder called "exampleX" where X is a number that matches the domainname from which you download.
+					Download Router functions by means of "route rules". Apart from having a name (which is just a name, nothing
+					else), a route rule consists of two main parts: A URL-matcher and a Target Directory. The URL-matcher is a regular
+					expression that should match the url for which you want the route rule to trigger. This may be something like
+					this: .*example\.com.*
+				</p>
+				<p>
+					The Target Directory setting for a route rule is simply the target for the downloaded file. A setting like
+					"MyFolder" will simply put the files that are picked up by this route in a folder called "MyFolder".
+				</p>
+				<p>
+					The Target Directory may also be a bit more dynamic, using groups from the URL-matcher. If your URL-matcher looks
+					like this: .*(example\d+).* and your TargetDirectory is $1, your files will be downloaded to a folder called
+					"exampleX" where X is a number that matches the domainname from which you download.
 				</p>
 			</div>
 		</div>
@@ -39,7 +50,11 @@
 				What's a regular expression (regex)?
 			</div>
 			<div class="col helpsection">
-				Regular expressions are common in the world of computer programming, and there's no chance in a blue moon that I can cover it here. If you don't know what a regular expression is, please take comfort in the fact that the default route provided with the extension is probably going to be enough for most of your needs. In case you still feel you have too much time on your hands, there are several good resources on the web for <a href="http://www.regexr.com/"> learning about regular expressions</a>.
+				Regular expressions are common in the world of computer programming, and there's no chance in a blue moon that I
+				can cover it here. If you don't know what a regular expression is, please take comfort in the fact that the default
+				route provided with the extension is probably going to be enough for most of your needs. In case you still feel you
+				have too much time on your hands, there are several good resources on the web for <a href="http://www.regexr.com/">
+					learning about regular expressions</a>.
 			</div>
 		</div>
 
@@ -48,11 +63,16 @@
 				How can I arrange my downloads in directories based on date?
 			</div>
 			<div class="col helpsection">
-				Since version 0.0.7, DownloadRouter has support for date-based sorting. In its simplest form, you use the format <i>$d{xxx}</i> in your Target Directory, where <i>xxx</i> is the date format you want. <br/>
-				 <i>Example 1</i>: To arrange into a directory with this month's numeral value (01 for January, 08 for August, etc), use this value for your Target Directory: <b>$d{MM}</b> <br/>
-				 <i>Example 2</i>: To arrange into a directory with this year's numeral value (four digits), use this value for your Target Directory: <b>$d{YYYY}</b> <br/>
-				 <i>Example 3</i>: To arrange into a directory with this year's numeral value (two digits), and a sub directory for each month, use this value for your Target Directory: <b>$d{YY}/$d{MM}</b> </br>
-				Behind the scenes, I'm using <i>moment.js</i>, so for more advanced formats, you can have a look at <a href="http://momentjs.com/docs/#/parsing/string-format/">the format sections</a> on their homepage, or shoot me an email and I'll help if I can.
+				Since version 0.0.7, DownloadRouter has support for date-based sorting. In its simplest form, you use the format <i>$d{xxx}</i>
+				in your Target Directory, where <i>xxx</i> is the date format you want. <br />
+				<i>Example 1</i>: To arrange into a directory with this month's numeral value (01 for January, 08 for August, etc),
+				use this value for your Target Directory: <b>$d{MM}</b> <br />
+				<i>Example 2</i>: To arrange into a directory with this year's numeral value (four digits), use this value for your
+				Target Directory: <b>$d{YYYY}</b> <br />
+				<i>Example 3</i>: To arrange into a directory with this year's numeral value (two digits), and a sub directory for
+				each month, use this value for your Target Directory: <b>$d{YY}/$d{MM}</b> </br>
+				Behind the scenes, I'm using <i>moment.js</i>, so for more advanced formats, you can have a look at <a href="http://momentjs.com/docs/#/parsing/string-format/">the
+					format sections</a> on their homepage, or shoot me an email and I'll help if I can.
 			</div>
 		</div>
 
@@ -62,8 +82,10 @@
 				What's this default route thingy?
 			</div>
 			<div class="col helpsection">
-				The default route thingy is simply the most logical way to start using Download Router. It will put your content in a folder named after the domain from which you download it, but without any leading www:s.
-				Eg, if you download a file called myfile.txt from the url http://www.example.com/some/path/here/myfile.txt, Download Router will put your file in a folder called "example.com" in your downloads folder.
+				The default route thingy is simply the most logical way to start using Download Router. It will put your content in
+				a folder named after the domain from which you download it, but without any leading www:s.
+				Eg, if you download a file called myfile.txt from the url http://www.example.com/some/path/here/myfile.txt,
+				Download Router will put your file in a folder called "example.com" in your downloads folder.
 			</div>
 		</div>
 
@@ -72,7 +94,8 @@
 				I want feature X
 			</div>
 			<div class="col helpsection">
-				Interesting! <a href="mailto:kristofer.jarl@gmail.com">Shoot me an email</a> and let me know. If/when I have time, and if the feature request seems to be in line with what Download Router is intended for, I will make it happen.
+				Interesting! <a href="mailto:kristofer.jarl@gmail.com">Shoot me an email</a> and let me know. If/when I have time,
+				and if the feature request seems to be in line with what Download Router is intended for, I will make it happen.
 			</div>
 		</div>
 
@@ -81,7 +104,8 @@
 				I'm a developer, and I want to help
 			</div>
 			<div class="col helpsection">
-				You're more than welcome to do so. The code is available at <a href="https://github.com/silverbeak/DownloadRouterForChrome">github</a>. Send me a pull request.
+				You're more than welcome to do so. The code is available at <a href="https://github.com/silverbeak/DownloadRouterForChrome">github</a>.
+				Send me a pull request.
 			</div>
 		</div>
 
@@ -91,9 +115,12 @@
 			</div>
 			<div class="col helpsection">
 				<p>
-				Any donations are completely voluntary, since Download Router is free (as in beer, and as in freedom) for all to use. Donations are simply a way for me to cover the cost of development tools and licenses.
-				</p><p>
-				And to those who donate: <b>Thank you very much</b>, I highly appreciate your gift! Please <a href="mailto:kristofer.jarl@gmail.com">let me know who you are</a>!
+					Any donations are completely voluntary, since Download Router is free (as in beer, and as in freedom) for all to
+					use. Donations are simply a way for me to cover the cost of development tools and licenses.
+				</p>
+				<p>
+					And to those who donate: <b>Thank you very much</b>, I highly appreciate your gift! Please <a href="mailto:kristofer.jarl@gmail.com">let
+						me know who you are</a>!
 				</p>
 			</div>
 		</div>
@@ -103,8 +130,10 @@
 				Anonymous statistics! Are you spying on me?!
 			</div>
 			<div class="col helpsection">
-				No! Whereas I recommend not downloading illegal/unethical stuff from the internet, it's none of my concern. The statistics contain no information about you or your downloads, only metadata about how the application is working.
-				By ticking that box, you help me by understanding if something's not working so I can fix it. But if you feel uncomfortable with this, there are two measures you can take:
+				No! Whereas I recommend not downloading illegal/unethical stuff from the internet, it's none of my concern. The
+				statistics contain no information about you or your downloads, only metadata about how the application is working.
+				By ticking that box, you help me by understanding if something's not working so I can fix it. But if you feel
+				uncomfortable with this, there are two measures you can take:
 				<ol>
 					<li>Un-tick the <i>Allow anonymous statistics</i> box on the settings page</li>
 					<li>Ask a professional what (s)he can do to help you with your paranoia</li>
@@ -149,16 +178,18 @@
 			<input type="hidden" name="cmd" value="_s-xclick">
 			<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
 			">
-			<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+			 alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		</form>
-	</div>
+		</div>
 
-	<footer class="rightfooter">
-		Created by<br />
-		<a href="mailto:kristofer.jarl@gmail.com"><b>Kristofer Jarl</b></a>
-		<br />
-		<a href="./credits.html">Credits</a>
-	</footer>
+		<footer class="rightfooter">
+			Created by<br />
+			<a href="mailto:kristofer.jarl@gmail.com"><b>Kristofer Jarl</b></a>
+			<br />
+			<a href="./credits.html">Credits</a>
+		</footer>
 </body>
+
 </html>

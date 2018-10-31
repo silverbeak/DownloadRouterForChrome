@@ -10,32 +10,32 @@
 
 ExtGA.prototype = {
 
-    trackingId : null,
-    trackingDns : null,
-    appVersion : null,
-    appName : null,
-    uId : null,
-    getPref : function(key) { return window.localStorage.getItem(key); },
-    setPref : function(key, val) { return window.localStorage.setItem(key, val); },
+    trackingId: null,
+    trackingDns: null,
+    appVersion: null,
+    appName: null,
+    uId: null,
+    getPref: function (key) { return window.localStorage.getItem(key); },
+    setPref: function (key, val) { return window.localStorage.setItem(key, val); },
 
     /**
      * Initilization function
      * @param object trackingData Have all tracking attributes
     */
-    init : function (trackingData) {
+    init: function (trackingData) {
         this.trackingId = trackingData.trackingId;
         this.trackingDns = trackingData.trackingDns;
         this.appVersion = trackingData.appVersion;
         this.appName = trackingData.appName;
-        if(typeof(trackingData.getPref) == "function") this.getPref = trackingData.getPref;
-        if(typeof(trackingData.setPref) == "function") this.setPref = trackingData.setPref;
+        if (typeof (trackingData.getPref) == "function") this.getPref = trackingData.getPref;
+        if (typeof (trackingData.setPref) == "function") this.setPref = trackingData.setPref;
     },
 
     /**
      * change uId value
      * @param string _uId User Id
     */
-    setUid : function (_uId) {
+    setUid: function (_uId) {
         this.uId = _uId;
     },
 
@@ -46,12 +46,12 @@ ExtGA.prototype = {
      * @param string label Event Label (optional)
      * @param integer value Event Value (optional)
     */
-    event : function (category, action, label, value) {
+    event: function (category, action, label, value) {
         payload = "&t=event";
-        if (category) payload += "&ec="+escape(category);
-        if (action) payload += "&ea="+escape(action);
-        if (label) payload += "&el="+escape(label);
-        if (value) payload += "&ev="+parseInt(value);
+        if (category) payload += "&ec=" + escape(category);
+        if (action) payload += "&ea=" + escape(action);
+        if (label) payload += "&el=" + escape(label);
+        if (value) payload += "&ev=" + parseInt(value);
         this._collect(payload);
     },
 
@@ -60,10 +60,10 @@ ExtGA.prototype = {
      * @param string path Page path
      * @param string title Page title
     */
-    pageview : function (path, title){
+    pageview: function (path, title) {
         payload = "&t=pageview";
-        if (path) payload += "&dp="+escape(path);
-        if (title) payload += "&dt="+escape(title);
+        if (path) payload += "&dp=" + escape(path);
+        if (title) payload += "&dt=" + escape(title);
         this._collect(payload);
     },
 
@@ -72,10 +72,10 @@ ExtGA.prototype = {
      * @param string description Exception Description
      * @param binary fatal Is it fatal ?
     */
-    exception : function (description, fatal) {
+    exception: function (description, fatal) {
         payload = "&t=exception";
-        if (description) payload += "&exd="+escape(description);
-        if (fatal) payload += "&exf="+fatal;
+        if (description) payload += "&exd=" + escape(description);
+        if (fatal) payload += "&exf=" + fatal;
         this._collect(payload);
     },
 
@@ -85,33 +85,33 @@ ExtGA.prototype = {
      * @param string network Social network
      * @param string target Path targeted by social event
     */
-    social : function (action, network, target) {
+    social: function (action, network, target) {
         payload = "&t=social";
-        if (action) payload += "&sa="+escape(action);
-        if (network) payload += "&sn="+escape(network);
-        if (target) payload += "&st="+escape(target);
+        if (action) payload += "&sa=" + escape(action);
+        if (network) payload += "&sn=" + escape(network);
+        if (target) payload += "&st=" + escape(target);
         this._collect(payload);
     },
 
     /**
      * Get/Generate & Save Client Id
     */
-    _getCid : function () {
-        if (this.getPref("gaCid")){
-            return "&cid="+this.getPref("gaCid");
+    _getCid: function () {
+        if (this.getPref("gaCid")) {
+            return "&cid=" + this.getPref("gaCid");
         } else {
             var cid = Math.round(2147483647 * Math.random());
             this.setPref("gaCid", cid);
-            return "&cid="+cid;
+            return "&cid=" + cid;
         }
     },
 
     /**
      * Get/Generate & Save Client Id
     */
-    _getUid : function () {
+    _getUid: function () {
         if (this.uId != null) {
-            return "&uid="+this.uId;
+            return "&uid=" + this.uId;
         } else {
             return "";
         }
@@ -120,21 +120,21 @@ ExtGA.prototype = {
     /**
      * Add System Info
     */
-    _getSystemInfo : function () {
-        payload  = "";
-        payload += "&sr="+window.screen.availWidth+"x"+window.screen.availHeight;
-        payload += "&sd="+window.screen.colorDepth+"-bits";
-        payload += "&ul="+navigator.language;
+    _getSystemInfo: function () {
+        payload = "";
+        payload += "&sr=" + window.screen.availWidth + "x" + window.screen.availHeight;
+        payload += "&sd=" + window.screen.colorDepth + "-bits";
+        payload += "&ul=" + navigator.language;
         return payload;
     },
 
     /**
      * Add Application Info
     */
-    _getAppInfo : function () {
-        payload  = "";
-        payload += "&an="+this.appName;
-        payload += "&av="+this.appVersion;
+    _getAppInfo: function () {
+        payload = "";
+        payload += "&an=" + this.appName;
+        payload += "&av=" + this.appVersion;
         return payload;
     },
 
@@ -142,10 +142,10 @@ ExtGA.prototype = {
      * Build GA collect link and sent it to Google
      * @param string payload Custom parameters
     */
-    _collect : function (payload) {
+    _collect: function (payload) {
         urlGa = "https://www.google-analytics.com/collect?v=1";
-        urlGa +="&dh="+this.trackingDns;
-        urlGa +="&tid="+this.trackingId;
+        urlGa += "&dh=" + this.trackingDns;
+        urlGa += "&tid=" + this.trackingId;
 
         urlGa += this._getUid();
         urlGa += this._getCid();

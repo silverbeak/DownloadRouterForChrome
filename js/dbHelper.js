@@ -1,7 +1,7 @@
 var callbackList = [];
 var settingsCallbackList = [];
 
-var sortRoutes = function(routes) {
+var sortRoutes = function (routes) {
 	var arr = [];
 	for (var key in routes) {
 		if (routes.hasOwnProperty(key)) {
@@ -9,20 +9,20 @@ var sortRoutes = function(routes) {
 		}
 	}
 
-	return arr.sort(function(a, b) { return a.prio - b.prio; });
+	return arr.sort(function (a, b) { return a.prio - b.prio; });
 };
 
-var onDbUpdate = function(changes, namespace) {
+var onDbUpdate = function (changes, namespace) {
 	var updateKeys = Object.keys(changes);
 
-	if(updateKeys.indexOf('settings') !== -1) {
-		$.each(settingsCallbackList, function(settingsCallback) {
+	if (updateKeys.indexOf('settings') !== -1) {
+		$.each(settingsCallbackList, function (settingsCallback) {
 			this(changes.settings.newValue);
 		});
 	}
 
-	if(updateKeys.indexOf('routes') !== -1) {
-		readRoutesFromDb(function(routes) {
+	if (updateKeys.indexOf('routes') !== -1) {
+		readRoutesFromDb(function (routes) {
 			var routeList = sortRoutes(routes);
 			for (var i = callbackList.length - 1; i >= 0; i--) {
 				callbackList[i](routeList);
@@ -51,18 +51,20 @@ function readRoutesFromDb(callback) {
 				'targetDirectory': "$1"
 			}
 		}
-	}, function(items) {
+	}, function (items) {
 		callback(sortRoutes(items.routes));
 	});
 }
 
 function readSettings(callback) {
-	var defaultSettings = {'settings': {
-		'showNotificationOnDownload': true,
-		'allowAnonymousStatistics': true
-	}};
+	var defaultSettings = {
+		'settings': {
+			'showNotificationOnDownload': true,
+			'allowAnonymousStatistics': true
+		}
+	};
 
-	chrome.storage.local.get(defaultSettings, function(items) {
+	chrome.storage.local.get(defaultSettings, function (items) {
 		callback(Object.assign(defaultSettings, items.settings));
 	});
 }
@@ -78,7 +80,7 @@ function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, on
 	};
 
 
-	readRoutesFromDb(function(routes) {
+	readRoutesFromDb(function (routes) {
 		if (typeof index === 'undefined' || index === -1) {
 			// New route, just push to object
 			routes.push(newRoute);
@@ -89,12 +91,12 @@ function saveRoute(routeName, urlMatch, fileNameMatch, targetDirectory, prio, on
 			ga.event('Route', 'Updated', routeName, 1);
 		}
 
-		chrome.storage.local.set({'routes': routes}, onSave(routeName));
+		chrome.storage.local.set({ 'routes': routes }, onSave(routeName));
 	});
 }
 
 function setRouteEnabled(index, value) {
-	readRoutesFromDb(function(routes) {
+	readRoutesFromDb(function (routes) {
 		routes[index].enabled = value;
 		saveAllRoutes(routes);
 		if (value) ga.event('Route', 'Enabled', routes[index].name);
@@ -104,15 +106,15 @@ function setRouteEnabled(index, value) {
 }
 
 function saveAllRoutes(routes) {
-	chrome.storage.local.set({'routes': routes}, function() {});
+	chrome.storage.local.set({ 'routes': routes }, function () { });
 }
 
 function saveSettings(settings, callback) {
-	chrome.storage.local.set({'settings': settings}, callback);
+	chrome.storage.local.set({ 'settings': settings }, callback);
 }
 
 function deleteRoute(index) {
-	readRoutesFromDb(function(routes) {
+	readRoutesFromDb(function (routes) {
 		routes.splice(index, 1);
 		saveAllRoutes(routes);
 	});

@@ -2,15 +2,15 @@
 
 var editRouteTemplate = null;
 
-if(location.protocol === 'chrome-extension:' && chrome.runtime.id === location.hostname) {
-	$.get('./templates/editroute.html', function(routeTemplate) {
+if (location.protocol === 'chrome-extension:' && chrome.runtime.id === location.hostname) {
+	$.get('./templates/editroute.html', function (routeTemplate) {
 		editRouteTemplate = routeTemplate;
 	});
 }
 
-var saveRouteBtnClick = function(index) {
-	return function() {
-		$("#save").click(function() {
+var saveRouteBtnClick = function (index) {
+	return function () {
+		$("#save").click(function () {
 			var routeName = $("#newroutename").val();
 			var urlMatch = $("#urltext").val();
 			var targetDirectory = $("#targetdirectorytext").val();
@@ -24,7 +24,7 @@ var saveRouteBtnClick = function(index) {
 	}
 };
 
-var editRoute = function(route) {
+var editRoute = function (route) {
 	var tpl = editRouteTemplate;
 	tpl = tpl.replace('$routename$', route.name);
 	tpl = tpl.replace('$urlMatch$', route.urlMatch);
@@ -34,7 +34,7 @@ var editRoute = function(route) {
 
 var emptyRoute = { name: '', targetDirectory: '', urlMatch: '' };
 
-var editTemplate = function(index, route) {
+var editTemplate = function (index, route) {
 	if (typeof route === 'undefined') {
 		return editRoute(emptyRoute);
 	} else {
@@ -42,7 +42,7 @@ var editTemplate = function(index, route) {
 	}
 };
 
-var buildSingleRouteElement = function(index, route) {
+var buildSingleRouteElement = function (index, route) {
 	var newElement = "";
 	newElement += '<div class="routesection"><dt class="routeheader">';
 	newElement += route.name;
@@ -71,8 +71,8 @@ var buildSingleRouteElement = function(index, route) {
 	return newElement;
 };
 
-var addActionsToElements = function(index, route) {
-	$('#enabledcheckbox' + index).click(function(event) {
+var addActionsToElements = function (index, route) {
+	$('#enabledcheckbox' + index).click(function (event) {
 		setRouteEnabled(index, this.checked);
 		var action;
 		if (this.checked) { action = 'enabled'; }
@@ -80,12 +80,12 @@ var addActionsToElements = function(index, route) {
 		$.growl({ title: "Route change", message: "Route " + route.name + " " + action + "." });
 	});
 
-	$('#deleteroute' + index).click(function(event) {
+	$('#deleteroute' + index).click(function (event) {
 		deleteRoute(index);
 		$.growl({ title: "Deleted!", message: "Route " + route.name + " deleted!" });
 	});
 
-	$('#editroute' + index).click(function(event) {
+	$('#editroute' + index).click(function (event) {
 		$.modal(editTemplate(index, route), {
 			onShow: saveRouteBtnClick(index)
 		});
@@ -93,10 +93,10 @@ var addActionsToElements = function(index, route) {
 };
 
 var routeListHelper = {
-	buildRouteList: function(routeList) {
+	buildRouteList: function (routeList) {
 		$('#routelist').html('');
 		var newElement = '<div class="allroutes">';
-		$.each(routeList, function(index, route) {
+		$.each(routeList, function (index, route) {
 			newElement += buildSingleRouteElement(index, route);
 		});
 
@@ -107,7 +107,7 @@ var routeListHelper = {
 		$.each(routeList, addActionsToElements);
 	},
 
-	cleanRouteList: function() {
+	cleanRouteList: function () {
 		$('#routelist').html('');
 	}
 }

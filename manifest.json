@@ -4,7 +4,7 @@
   "name": "Download Router",
   "short_name": "DL Router",
   "description": "Allows you to route your downloads to custom target folders.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "background": {
     "scripts": [
       "js/lib/lodash/lodash-4.13.1.min.js",

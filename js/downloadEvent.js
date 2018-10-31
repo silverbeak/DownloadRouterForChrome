@@ -2,11 +2,11 @@ var myRoutes;
 var myDownloads = {};
 var mySettings;
 
-var onRoutesRead = function(routes) {
+var onRoutesRead = function (routes) {
   myRoutes = routes;
 };
 
-var applyRoute = function(downloadRoute, url) {
+var applyRoute = function (downloadRoute, url) {
   var target = url.match(new RegExp(downloadRoute.urlMatch));
 
   var targetMatch = downloadRoute.targetDirectory.match(/\$\d/g);
@@ -18,13 +18,13 @@ var applyRoute = function(downloadRoute, url) {
   targetDirectory = downloadRoute.targetDirectory;
 
   for (var i = targetMatchCount; i >= 0; i--) {
-      targetDirectory = targetDirectory.replace("$" + i, target[i]);
+    targetDirectory = targetDirectory.replace("$" + i, target[i]);
   }
 
   return targetDirectory;
 }
 
-var isRouteMatch = function(downloadItemUrl, route) {
+var isRouteMatch = function (downloadItemUrl, route) {
   if (!route.enabled) return false;
 
   var myRegexp = new RegExp(route.urlMatch);
@@ -33,7 +33,7 @@ var isRouteMatch = function(downloadItemUrl, route) {
   return (match !== null && typeof match[1] !== 'undefined')
 }
 
-var downloadCallback = function(downloadItem, suggest) {
+var downloadCallback = function (downloadItem, suggest) {
   var newFilename = downloadItem.filename;
 
   var targetDirectory = '';
@@ -53,12 +53,12 @@ var downloadCallback = function(downloadItem, suggest) {
     filename: newFilename
   };
 
-  suggest( {
+  suggest({
     filename: targetDirectory + '/' + newFilename
   });
 };
 
-var changeCallback = function(downloadDelta) {
+var changeCallback = function (downloadDelta) {
   if (mySettings.showNotificationOnDownload && downloadDelta.state && downloadDelta.state.current === 'complete') {
     var thisDownload = myDownloads[downloadDelta.id];
     if (thisDownload) {
@@ -68,13 +68,13 @@ var changeCallback = function(downloadDelta) {
         message: "'" + thisDownload.filename + "' finished downloading to '" + thisDownload.targetDirectory + "'",
         iconUrl: "./img/icon.png"
       };
-      chrome.notifications.create('', opt, function() {});
+      chrome.notifications.create('', opt, function () { });
       ga.event('Download', 'Complete');
     }
   }
 };
 
-var updateSettingsCallback = function(settings) { mySettings = settings; };
+var updateSettingsCallback = function (settings) { mySettings = settings; };
 
 addSettingsUpdateCallback(updateSettingsCallback);
 addDbUpdateCallback(onRoutesRead);

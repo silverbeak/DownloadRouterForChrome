@@ -1,49 +1,51 @@
 <html>
+
 <head>
 	<title>Download Router Settings</title>
 </head>
+
 <body>
 
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<h1>Download Router Settings</h1>
-			<small>I don't know where to start. <b><a href="./help.html">Help me, please...</a></b></small>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<div class="settingssection">
-				<input type="checkbox" id="shownotificationcheckbox"> Show notification when download finishes</input>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<div class="settingssection">
-				<input type="checkbox" id="allowanonymousstatistics"> Allow anonymous statistics to be collected</input>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<div>
-				<a class="btn btn-default" id="newroutebtn">New Route</a>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<div id="routelist">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Download Router Settings</h1>
+				<small>I don't know where to start. <b><a href="./help.html">Help me, please...</a></b></small>
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col">
+				<div class="settingssection">
+					<input type="checkbox" id="shownotificationcheckbox"> Show notification when download finishes</input>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div class="settingssection">
+					<input type="checkbox" id="allowanonymousstatistics"> Allow anonymous statistics to be collected</input>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div>
+					<a class="btn btn-default" id="newroutebtn">New Route</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div id="routelist">
+				</div>
+			</div>
+
+		</div>
 	</div>
-</div>
 
 	<script src="js/lib/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript" src="js/routeListHelper.js"></script>
@@ -67,17 +69,19 @@
 			<input type="hidden" name="cmd" value="_s-xclick">
 			<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
 			">
-			<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<input type="image" src="https://www.paypalobjects.com/en_US/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+			 alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		</form>
-	</div>
+		</div>
 
-	<footer class="rightfooter">
-		Created by<br />
-		<a href="mailto:kristofer.jarl@gmail.com"><b>Kristofer Jarl</b></a>
-		<br />
-		<a href="./credits.html">Credits</a>
-	</footer>
+		<footer class="rightfooter">
+			Created by<br />
+			<a href="mailto:kristofer.jarl@gmail.com"><b>Kristofer Jarl</b></a>
+			<br />
+			<a href="./credits.html">Credits</a>
+		</footer>
 
 </body>
+
 </html>
